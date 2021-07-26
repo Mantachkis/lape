@@ -38,9 +38,6 @@ else{
 }
 
 
-
-
-
 echo '<br>';
 echo '<br>';
 
@@ -104,11 +101,6 @@ echo  $pirmaReiksme;
 echo '<br>', $antraReiksme;
 echo '<br>', $treciaReiksme;
 echo '<br>', $ketvirtaReiksme,'<br>';
-
-
-// $test= match (0){
-//     $pirmaReiksme,$antraReiksme,$treciaReiksme,$ketvirtaReiksme => $nulis++
-// };
 
 if($pirmaReiksme==0)
 {$nulis++;}
