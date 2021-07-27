@@ -100,10 +100,8 @@ echo '5 uzdavinys <br>';
 
 $fraze='An American in Paris';
 
-$pakeistaFraze=str_replace('a','*',$fraze);
-$result=str_replace('A','*',$pakeistaFraze);
-echo $result;
-
+$pakeistaFraze=str_ireplace('a','*',$fraze);
+echo $pakeistaFraze;
 
 echo '<br>';
 echo '<br>';
@@ -112,7 +110,8 @@ echo '6 uzdavinys <br>';
 //Sukurti kintamąjį su stringu: “An American in Paris”. Suskaičiuoti visas “a” (didžiąsias ir mažąsias) raides. Rezultatą atspausdinti.
 
 $america= 'An American in Paris';
-$count=substr_count($america,'a') + substr_count($america,'A');
+$count=substr_count(strtoupper($america),'A') ;
+
 
 echo $count;
 
@@ -123,8 +122,10 @@ echo '7 uzdavinys <br>';
 //Sukurti kintamąjį su stringu: “An American in Paris”. Jame ištrinti visas balses. Rezultatą atspausdinti. 
 //Kodą pakartoti su stringais: “Breakfast at Tiffany's”, “2001: A Space Odyssey” ir “It's a Wonderful Life”.
 
-$filmuPavadinimai= array("An American in Paris","'Breakfast at Tiffany's'","2001: A Space Odyssey","It's a Wonderful Life");
-$balses = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
+$filmuPavadinimai= ["An American in Paris","'Breakfast at Tiffany's'",
+                    "2001: A Space Odyssey",
+                    "It's a Wonderful Life"];
+$balses = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
 
 for ($i=0;$i<4;$i++) {
 $answer=str_replace($balses, '', $filmuPavadinimai[$i]);
@@ -141,8 +142,8 @@ echo '8 uzdavinys <br>';
 
 $test='Star Wars: Episode '.str_repeat(' ', rand(0,5)). rand(1,9) . ' - A New Hope';
 $re = '/\d/';
-$number=preg_match_all($re, $test, $matches);
-print_r($matches);
+$number=preg_match($re, $test, $matches);
+echo $matches[0];
 
 
 echo '<br>';
@@ -156,12 +157,12 @@ echo '9 uzdavinys <br>';
 $expresion1= "Don't Be a Menace to South Central While Drinking Your Juice in the Hood";
 $expresion2= "Tik nereikia gąsdinti Pietų Centro, geriant sultis pas save kvartale";
 
-$expresion1answ= preg_match_all('/[a-zA-Z]{1,5}/', $expresion1, $matches, PREG_SET_ORDER, 0);
+$expresion1answ= preg_match_all('/\b[a-zA-Z^\']{1,5}\b/', $expresion1, $matches, PREG_SET_ORDER, 0);
+
 
 echo $expresion1answ, '<br>';
 
-$expresion2answ=preg_match_all('/[a-zA-Z]{1,5}/', $expresion2, $matches, PREG_SET_ORDER, 0);
-
+$expresion2answ=preg_match_all('/\b[a-zA-Z]{1,5}\b/', $expresion2, $matches, PREG_SET_ORDER, 0);print_r($matches);
 echo $expresion2answ;
 
 echo '<br>';
@@ -171,7 +172,7 @@ echo '10 uzdavinys <br>';
 //Parašyti kodą, kuris generuotų atsitiktinį stringą iš lotyniškų mažųjų raidžių. 
 //Stringo ilgis 3 simboliai.
 
-$leters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','r','s','t','u','v','z');
+$leters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','r','s','t','u','v','z'];
 $emptyString='';
 
 for($i=0;$i<4;$i++){
