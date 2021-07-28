@@ -290,10 +290,33 @@ echo '8 uzduotis','<br>';
 //(https://lt.wikipedia.org/wiki/Rombas), kurio aukštis 21 eilutė. Reikia padaryti,
 // kad kiekviena rombo žvaigždutė būtų atsitiktinės RGB spalvos (perkrovus puslapį spalvos turi keistis).
 
+$puse = 10;
 
+for ($i = 1; $i < $puse; $i++) {
+    for ($j = $i; $j < $puse; $j++)
+        echo '&nbsp;&nbsp;&nbsp;';
+    for ($j = 2 * $i - 1; $j > 0; $j--)
+        echo '&nbsp;<span style="color: rgb('.rand(0,255).','.rand(0,255).','.rand(0,255).');">*</span>';
+    echo '<br>';
+}
+for ($i = $puse; $i > 0; $i--) {
+    for ($j = $puse - $i; $j > 0; $j--)
+        echo '&nbsp;&nbsp;&nbsp;';
+    for ($j = 2 * $i - 1; $j > 0; $j--)
+        echo '&nbsp;<span style="color: rgb('.rand(0,255).','.rand(0,255).','.rand(0,255).');">*</span>';
+    echo "<br>";
+}
 echo '<br>';
 echo '<br>';
 echo '9 uzduotis','<br>';
+
+$rombas = '***********';
+for ($i = 0; $i < 21; $i++) {
+    for ($j = 0; $j < $i; $j++) {
+        echo '&nbsp;';
+    }
+    echo '<span style="color: rgb('.rand(0,255).','.rand(0,255).','.rand(0,255).");\">$rombas</span>" . '<span style="color: rgb('.rand(0,255).','.rand(0,255).','.rand(0,255).");\">$rombas</span>" . '<span style="color: rgb('.rand(0,255).','.rand(0,255).','.rand(0,255).");\">$rombas</span>" . '<span style="color: rgb('.rand(0,255).','.rand(0,255).','.rand(0,255).");\">$rombas</span>" . '<br>' ;
+}
 
 echo '<br>';
 echo '<br>';
@@ -309,7 +332,7 @@ echo '10 uzduotis','<br>';
 
 
 //A
-$viniesGylis=rand(1000,10000)+850;
+$viniesGylis=850;
 $kalimuSkaicius=0;
 $visoViniu=5;
 while($visoViniu!=0){
@@ -325,7 +348,7 @@ echo $kalimuSkaicius,'<br>';
 
 //B
 
-$viniesGylis2=rand(1000,10000)+850;
+$viniesGylis2=850;
 $kalimuSkaicius2=0;
 $visoViniu2=5;
 
@@ -341,4 +364,32 @@ $visoViniu2--;
 echo 'dideliais smugiais 5 vinys <br>';
 echo $kalimuSkaicius2;
 
+echo '<br>';
+echo '<br>';
+echo '11. uzdavinys <br>';
+$skaiciuKiekis = 0;
+$skaiciuStringas = '';
+$pirminiai = '';
 
+do {
+    $unikalusSkaicius = false;
+    do {
+        $random = rand(1, 200);
+        if (!strpos($skaiciuStringas, $random)) {
+            $skaiciuStringas .= $random . ' ';
+            $skaiciuKiekis++;
+            $unikalusSkaicius = true;
+            $pirminis = true;
+            for ($i = 2; $i <= $random/2; $i++){
+                if ($random % $i == 0) {
+                    $pirminis = false;
+                }
+            }
+            if ($pirminis) {
+                $pirminiai .= $random . ' ';
+            }
+        }
+    } while (!$unikalusSkaicius);
+} while ($skaiciuKiekis < 50);
+echo $skaiciuStringas . '<br>';
+echo $pirminiai;
