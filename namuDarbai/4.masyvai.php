@@ -179,8 +179,6 @@ foreach(range(0,199) as $i){
 foreach(range(0,199) as $i){
     $superRaides[].=$atsitiktinesRaides1[$i].$atsitiktinesRaides2[$i].$atsitiktinesRaides3[$i];
 }
-
-
 //$superRaides= array_merge_recursive($atsitiktinesRaides1, $atsitiktinesRaides2,$atsitiktinesRaides3);
 
 //print_r($superRaides);
