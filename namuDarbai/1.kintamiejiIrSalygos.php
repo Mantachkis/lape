@@ -10,7 +10,7 @@ $gimimoMetai=1987;
 $einamiejiMetai=2021;
 $amzius=$einamiejiMetai-$gimimoMetai;
 
-echo "Aš esu $vardas $pavarde. Man yra $amzius metai";
+echo "Aš esu $vardas $pavarde. Man yra $amziumetai";
 
 echo '<br>';
 echo '<br>';
