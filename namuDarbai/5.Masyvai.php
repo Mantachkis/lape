@@ -301,3 +301,6 @@ foreach(range(0,9) as $i) {
     echo '<br>';
 }
 
+// usort($masyvas, function($a, $b){return count($a)<=> count($b);});
+
+// print_r($masyvas); 4

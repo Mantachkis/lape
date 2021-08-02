@@ -17,8 +17,8 @@ echo '<br>';
 echo 'antras uzdavinys';
 echo '<br>';
 $i=0;
-$a=['A'];
-$b=['B'];
+$a='A';
+$b='B';
 
 // foreach($masyvas as $index => $value){
 // if($value == 'A'){
@@ -36,19 +36,19 @@ $b=['B'];
 // }
 
 foreach($masyvas as $index => $value){
-    foreach($value as $j)
+    foreach(range(0,rand(3,10)) as $j)
     {
         if($value == $a){
     $rand=rand(3,10);
     for ($x=0;$x<=$rand;$x++){
-    $masyvas[$index][$j]= $a;
+    $masyvas[$index][$j]= 'A';
    
 }
         }
         else{
     $rand=rand(3,10);
     for ($y=0;$y<=$rand;$y++){
-    $masyvas[$index][$j]= $b;}
+    $masyvas[$index][$j]= 'B';}
 }
     
 }}
