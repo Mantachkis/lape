@@ -1,14 +1,14 @@
 <?php
 //Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29), 
 //kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.
-
+echo '<pre>';
 echo '1 uzdavvinys';
 
 echo '<br>';
 $atsitiktinisMasyvas=[];
 
 foreach(range(0,29) as $i){
-    $atsitiktinisMasyvas[$i]=rand(5,25);
+    $atsitiktinisMasyvas[]=rand(5,25);
 }
 
 
@@ -141,8 +141,8 @@ echo '3 uzdavinys <br>';
 // o ilgis 200. Suskaičiuokite kiek yra kiekvienos raidės.
 $atsitiktinesRaides=[];
 $raides=['A','B','C','D'];
-foreach(range(0,199) as $i){
-    $atsitiktinesRaides[$i]=$raides[rand(0,3)];
+foreach(range(1,200) as $i){
+    $atsitiktinesRaides[]=$raides[rand(0,3)];
 }
 echo '<br>';
 print_r($atsitiktinesRaides);
@@ -283,10 +283,7 @@ foreach(range(0,9) as $i){
     {
         $mazasBetGeras[$i]=rand(5,25);
     }
-    elseif($i==2){
-        $mazasBetGeras[$i]=$mazasBetGeras[0]+$mazasBetGeras[1];
-
-    }
+    
     else{
         $mazasBetGeras[$i]=$mazasBetGeras[$i-2]+$mazasBetGeras[$i-1];
     }
