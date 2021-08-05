@@ -1,9 +1,14 @@
 <?php
-if(isset($_GET['color']) ){
-$color='#'.$_GET['color'];
+
+if ('POST' == $_SERVER['REQUEST_METHOD']) {
+    $color='yellow';
+}
+else {
+    $color='green';
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,11 +20,11 @@ $color='#'.$_GET['color'];
 </head>
 
 <body style="background-color:<?=$color?>;">
-
     <form method="get">
-        <label>spalvos kodas</label><br>
-        <input type="text" name="color" value=""><br>
-        <input type="submit" value="keisti">
+        <button type="submit">zalia</button>
+    </form>
+    <form method="post">
+        <button type="submit">geltona</button>
     </form>
 
 
