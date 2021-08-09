@@ -2,6 +2,7 @@
 $color = 'red';
 $count = 0;
 
+
 if ('POST' == $_SERVER['REQUEST_METHOD']) {
     $color = 'white';
     for ($i = 0; $i <= $_POST['count']; $i++) {
