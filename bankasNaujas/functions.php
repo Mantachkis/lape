@@ -130,5 +130,6 @@ function addNewAccount()
 function getList()
 {
     $bank = getBank();
+    array_multisort(array_column($bank, 'surname'), SORT_DESC, $bank);
     require __DIR__ . '/view/list.php';
 }
