@@ -80,7 +80,7 @@ function deductFunds($key)
 
     $bank = getBank();
     foreach ($bank as $index => $_) {
-        if ($key == $bank[$index]['id']) {
+        if ($key == $bank[$index]['id'] && ($bank[$index]['funds'] - $_POST['funds']) >= 0) {
 
             $bank[$index]['funds'] -= $_POST['funds'];
         }
