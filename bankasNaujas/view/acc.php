@@ -18,6 +18,14 @@
         <button type="submit" name="aaa" value="addAcc"> sukurti naują sąskaitą</button>
 
     </form>
+    <?php
+    ?>
+    <div style="display:none;">
+        <h1 style="color:green;">ALL GOOD</h1>
+    </div>
+    <div style="display:none;">
+        <h1 style="color:RED;">NO NO NO</h1>
+    </div>
 </body>
 
 </html>

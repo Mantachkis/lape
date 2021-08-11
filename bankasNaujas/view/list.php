@@ -14,7 +14,7 @@
     foreach ($bank as $key => $i) { ?>
     <form action="" method="GET">
         <div>
-            <?php echo ($bank[$key]['acc']); ?>
+            <?php echo ($bank[$key]['acc']), '  ', ($bank[$key]['surname']); ?>
             <button type="submit" name="route" value="del_acc">Ištrinti</button>
             <input type="hidden" name="id" value="<?= $bank[$key]['id'] ?>">
         </div>

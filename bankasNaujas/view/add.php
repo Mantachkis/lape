@@ -27,6 +27,7 @@ $bank = getBank();
         <input type="double" name="funds">
         <Button type="submit">Pridėti lėšų</Button>
     </form>
+
 </body>
 
 </html>
