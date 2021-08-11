@@ -67,7 +67,8 @@ function removeAccount($key)
 {
     $bank = getBank();
     foreach ($bank as $index => $client) {
-        if ($key == $bank[$index]['id']) {
+
+        if ($key == $bank[$index]['id'] && $bank[$index]['funds'] <= 0) {
             unset($bank[$index]);
         }
     }
