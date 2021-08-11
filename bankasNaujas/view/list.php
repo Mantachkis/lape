@@ -25,10 +25,11 @@
         <input type="hidden" name="route" value="addFundsPage">
         <button type="submit" value="addFunds">Add Funds</button>
     </form>
-    <form action="" method="POST">
+
+    <form action="<?= URL ?>?route=deductFundsPage" method="POST">
         <input type="hidden" name="id" value="<?= $bank[$key]['id'] ?>">
-        <input type="hidden" name="route" value="deductFunds">
-        <button type="submit">Deduct Funds</button>
+        <input type="hidden" name="route" value="deductFundsPage">
+        <button type="submit" value="deductFundsPage">Deduct Funds</button>
     </form>
 
     <?php }

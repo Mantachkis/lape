@@ -37,12 +37,14 @@ function router()
         removeAccount($_GET['id']);
     } elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'addFundsPage' === $route) {
         addFundsPage();
-    } elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'deductFunds' === $route) {
+    } elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'deductFundsPage' === $route) {
         removeFundsPage();
     } elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'addAcc' === $route) {
         addNewAccount();
     } elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'addFunds' === $route) {
         addFunds($_POST['id']);
+    } elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'deductFunds' === $route) {
+        deductFunds($_POST['id']);
     } elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'list' === $route) {
         getList();
     } else {
@@ -72,6 +74,19 @@ function removeAccount($key)
     setBank($bank);
     header('Location: ' . URL . '?route=list');
 }
+function deductFunds($key)
+{
+
+    $bank = getBank();
+    foreach ($bank as $index => $_) {
+        if ($key == $bank[$index]['id']) {
+
+            $bank[$index]['funds'] -= $_POST['funds'];
+        }
+    }
+    setBank($bank);
+    header('Location: ' . URL . '?route=list');
+}
 
 function addFunds($key)
 {
@@ -94,6 +109,7 @@ function addFundsPage()
 
 function removeFundsPage()
 {
+
     require __DIR__ . './view/deduct.php';
 }
 function addNewAccount()
