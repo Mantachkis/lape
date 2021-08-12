@@ -1,31 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require __DIR__ . '/virsus.php' ?>
+<form action="<?= URL ?>?route=addAcc" method="POST">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Client</title>
-</head>
+    <label>Vardas: </label><input type="text" name="name">
+    <label>Pavardė: </label><input type="text" name="surname">
+    <label>Asmens kodas: </label><input type="text" name="id">
 
-<body>
-    <form action="<?= URL ?>?route=addAcc" method="POST">
+    <button type="submit" name="route" value="addAcc"> sukurti naują sąskaitą</button>
 
-        <label>Vardas: </label><input type="text" name="name">
-        <label>Pavardė: </label><input type="text" name="surname">
-        <label>Asmens kodas: </label><input type="text" name="id">
-
-        <button type="submit" name="aaa" value="addAcc"> sukurti naują sąskaitą</button>
-
-    </form>
-    <?php
-    ?>
-    <div style="display:none;">
-        <h1 style="color:green;">ALL GOOD</h1>
-    </div>
-    <div style="display:none;">
-        <h1 style="color:RED;">NO NO NO</h1>
-    </div>
-</body>
-
-</html>
+</form>
+<?php
+?>
+<div style="display:none;">
+    <h1 style="color:green;">ALL GOOD</h1>
+</div>
+<div style="display:none;">
+    <h1 style="color:RED;">NO NO NO</h1>
+</div>
+<?php require __DIR__ . '/apacia.php' ?>

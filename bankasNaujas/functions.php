@@ -73,7 +73,7 @@ function removeAccount($key)
         }
     }
     setBank($bank);
-    header('Location: ' . URL . '?route=list');
+    header('Location: ' . URL);
 }
 function deductFunds($key)
 {
@@ -86,7 +86,7 @@ function deductFunds($key)
         }
     }
     setBank($bank);
-    header('Location: ' . URL . '?route=list');
+    header('Location: ' . URL);
 }
 
 function addFunds($key)
@@ -100,7 +100,7 @@ function addFunds($key)
         }
     }
     setBank($bank);
-    header('Location: ' . URL . '?route=list');
+    header('Location: ' . URL);
 }
 
 function addFundsPage()
@@ -119,57 +119,67 @@ function addNewAccount()
     $int = $_POST['id'];
     $array = str_split($int);
     foreach ($bank as $key => $value) {
-        if ($bank[$key]['id'] != $int) {
-            if (count($array) != 11) {
-                header('Location: ' . URL . '?route=add');
-                exit;
-            }
-            if (!is_numeric($array[0]) && $array[0] < 1 && $array[0] > 6) {
-                header('Location: ' . URL . '?route=add');
-                exit;
-            }
-            if (!is_numeric($array[1]) && !is_numeric($array[2])) {
-                header('Location: ' . URL . '?route=add');
-                exit;
-            }
-            if (!is_numeric($array[3]) && $array[3] != 0 && $array[3] != 1) {
-                header('Location: ' . URL . '?route=add');
-                exit;
-            }
-            if (!is_numeric($array[4])) {
-                header('Location: ' . URL . '?route=add');
-                exit;
-            }
-            if (!is_numeric($array[5]) && $array[5] <= 3) {
-                header('Location: ' . URL . '?route=add');
-                exit;
-            }
-            if (!is_numeric($array[5]) && !is_numeric($array[6]) && !is_numeric($array[7]) && !is_numeric($array[8]) && !is_numeric($array[9]) && !is_numeric($array[10])) {
-                header('Location: ' . URL . '?route=add');
-                exit;
-            }
-            if (strlen($_POST['name']) < 3 && strlen($_POST['surname']) < 3) {
-                header('Location: ' . URL . '?route=add');
-                exit;
-            }
-            $count = count($bank);
-            $bank[$count]['name'] = $_POST['name'];
-            $bank[$count]['surname'] = $_POST['surname'];
-            $bank[$count]['id'] = $_POST['id'];
-            $bank[$count]['acc'] = 'LT0123456' . rand(10000000000, 99999999999);
-            $bank[$count]['funds'] = 0;
-            setBank($bank);
-            $bank = getBank();
-            header('Location: ' . URL . '?route=list');
-        } else {
+        if (isset($key['id']) && $key['id'] == $int) {
             header('Location: ' . URL . '?route=add');
+            exit;
+        }
+
+        if (count($array) != 11) {
+
+            header('Location: ' . URL . '?route=add');
+            exit;
+        }
+        if (!is_numeric($array[0]) && $array[0] < 1 && $array[0] > 6) {
+
+            header('Location: ' . URL . '?route=add');
+            exit;
+        }
+        if (!is_numeric($array[1]) && !is_numeric($array[2])) {
+
+            header('Location: ' . URL . '?route=add');
+            exit;
+        }
+        if (!is_numeric($array[3]) && $array[3] != 0 && $array[3] != 1) {
+
+            header('Location: ' . URL . '?route=add');
+            exit;
+        }
+        if (!is_numeric($array[4])) {
+
+            header('Location: ' . URL . '?route=add');
+            exit;
+        }
+        if (!is_numeric($array[5]) && $array[5] <= 3) {
+
+            header('Location: ' . URL . '?route=add');
+            exit;
+        }
+        if (!is_numeric($array[5]) && !is_numeric($array[6]) && !is_numeric($array[7]) && !is_numeric($array[8]) && !is_numeric($array[9]) && !is_numeric($array[10])) {
+
+            header('Location: ' . URL . '?route=add');
+            exit;
+        }
+        if (strlen($_POST['name']) < 3 && strlen($_POST['surname']) < 3) {
+
+            header('Location: ' . URL . '?route=add');
+            exit;
         }
     }
+    $count = count($bank);
+    $bank[$count]['name'] = $_POST['name'];
+    $bank[$count]['surname'] = $_POST['surname'];
+    $bank[$count]['id'] = $_POST['id'];
+    $bank[$count]['acc'] = 'LT0123456' . rand(10000000000, 99999999999);
+    $bank[$count]['funds'] = 0;
+    setBank($bank);
+    $bank = getBank();
+    header('Location: ' . URL);
 }
 
 function getList()
 {
     $bank = getBank();
     array_multisort(array_column($bank, 'surname'), SORT_DESC, $bank);
+
     require __DIR__ . '/view/list.php';
 }
