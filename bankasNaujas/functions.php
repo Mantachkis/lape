@@ -52,7 +52,14 @@ function router()
         die;
     }
 }
-
+function successMsg()
+{
+    echo "<script>alert ('Complete')</script>";
+}
+function failMsg()
+{
+    echo "<script>alert ('something went wrong')</script>";
+}
 function pirmasPuslapis()
 {
     require __DIR__ . '/view/pirmas.php';
@@ -101,6 +108,7 @@ function addFunds($key)
     }
     setBank($bank);
     header('Location: ' . URL);
+    successMsg();
 }
 
 function addFundsPage()
