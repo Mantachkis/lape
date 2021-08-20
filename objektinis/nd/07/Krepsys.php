@@ -19,7 +19,6 @@ class Krepsys
 
     public function __set($prop, $value)
     {
-
         $this->$prop += $value;
     }
 }

@@ -9,9 +9,13 @@ class Zverys extends Miskas
         $this->name = $name;
     }
 
-    public function papasakok()
+    protected function papasakok()
     {
         echo "Aš esu žvėris vardu $this->name <br>";
         parent::papasakok();
+    }
+    public function snekek()
+    {
+        self::papasakok();
     }
 }

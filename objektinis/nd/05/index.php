@@ -7,4 +7,4 @@ $miskas = new Miskas('Tamsusis');
 $zveris = new Zverys('Kiskis');
 
 
-$zveris->papasakok();
+$zveris->snekek();
