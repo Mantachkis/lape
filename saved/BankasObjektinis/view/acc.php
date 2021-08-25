@@ -1,5 +1,5 @@
 <?php require __DIR__ . '/virsus.php' ?>
-<form action="<?= URL ?>create" method="POST">
+<form action="<?= URL ?>?route=addAcc" method="POST">
 
     <label>Vardas: </label><input type="text" name="name">
     <label>Pavardė: </label><input type="text" name="surname">
@@ -10,5 +10,10 @@
 </form>
 <?php
 ?>
-
+<div style="display:none;">
+    <h1 style="color:green;">ALL GOOD</h1>
+</div>
+<div style="display:none;">
+    <h1 style="color:RED;">NO NO NO</h1>
+</div>
 <?php require __DIR__ . '/apacia.php' ?>

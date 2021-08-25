@@ -60,11 +60,16 @@
 <body>
 
     <nav>
-        <a href="<?= URL ?>">Home</a>
-        <a href="<?= URL ?>create">Add new acc</a>
-        <a href="<?= URL ?>list">Show all</a>
+        <a href="<?= URL ?>?route=home">Home</a>
+        <?php if (isLogged()) : ?>
+        <a href="<?= URL ?>">Get list</a>
+        <a href="<?= URL ?>?route=add">Add account</a>
+        <form action="<?= URL ?>?route=logout" method="post">
+            <button type="submit" class="btn btn-link">Log out <b><?= $_SESSION['name'] ?></b></button>
+        </form>
+        <?php else : ?>
+        <a href="<?= URL ?>?route=login">Log in</a>
 
-        <a href="<?= URL ?>login">Log in</a>
-
-
+        <?php endif ?>
     </nav>
+    <?php showMessages(); ?>

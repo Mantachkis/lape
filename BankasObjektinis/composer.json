@@ -1,0 +1,15 @@
+{
+    "name": "namai/bankas-objektinis",
+    "description": "Banko valdymo sistema",
+    "type": "no",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Namai\\BankasObjektinis\\": "src/",
+             "Bank\\Objektinis\\": "app/",
+              "Bank\\Objektinis\\Controllers\\": "app/controllers/",
+               "App\\DB\\": "app/"
+        }
+    },
+    "require": {}
+}
