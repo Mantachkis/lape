@@ -50,10 +50,13 @@ class Json implements DataBase
     function delete(int $userId): void
     {
         foreach ($this->data as $key => $i) {
-            if ($i['id'] == $userId) {
+            if ($i['id'] == $userId && $i['funds'] <= 0) {
                 unset($this->data[$key]);
+                // addMessage('Sėkmingai ištrinta');
             }
         }
+        // addMessage('Sąskaitoje yra lėšų, neglima ištrinti');
+
     }
 
     function show(int $userId): array

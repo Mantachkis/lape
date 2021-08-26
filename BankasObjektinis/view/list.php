@@ -19,7 +19,7 @@ foreach ($bank as $key => $i) { ?>
 </form>
 
 <form style="display:inline" action="<?= URL ?>deduct" method="POST">
-    <input type="hidden" name="id" value="<?= $id ?>">
+    <input type="hidden" name="id" value="<?= $i['id'] ?>">
     <button type="submit">Deduct Funds</button>
 </form>
 </div>

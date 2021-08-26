@@ -105,16 +105,28 @@ class BankController
     }
     public function addFunds()
     {
-
         $bank = Json::get()->showAll();
         foreach ($bank as $account) {
             if ($_POST['id'] == $account['id']) {
-
                 $account['funds'] += $_POST['funds'];
+                Json::get()->update($_POST['id'], $account);
                 //addMessage('Atimtos lėšos');
             }
         }
-        $bank->__destruct;
+        return App::redirect('list');
+    }
+    public function deductFunds()
+    {
+
+        $bank = Json::get()->showAll();
+        foreach ($bank as $account) {
+            if ($_POST['id'] == $account['id'] && ($account['funds'] - $_POST['funds']) >= 0) {
+                $account['funds'] -= $_POST['funds'];
+                Json::get()->update($_POST['id'], $account);
+                //addMessage('Atimtos lėšos');
+            }
+            //addMessage('Trūksta lėšų');
+        }
         return App::redirect('list');
     }
 }

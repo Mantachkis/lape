@@ -39,6 +39,9 @@ class App
         if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'addFunds' == $url[0]) {
             return (new BankController)->addFunds();
         }
+        if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'deductFunds' == $url[0]) {
+            return (new BankController)->deductFunds();
+        }
         if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'create' == $url[0]) {
             return (new BankController)->save();
         }
