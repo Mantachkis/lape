@@ -2,7 +2,7 @@
 
 
 
- <form action="<?= URL ?>?route=login" method="post" class=" login-form">
+ <form action="<?= URL ?>login" method="post" class=" login-form">
      <div>
          <label>Vardas</label>
          <input type="text" class="form-control" name="name">

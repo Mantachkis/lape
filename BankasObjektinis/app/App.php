@@ -3,6 +3,7 @@
 namespace Bank\Objektinis;
 
 use Bank\Objektinis\Controllers\BankController;
+use Bank\Objektinis\Controllers\LoginController;
 
 class App
 {
@@ -28,6 +29,12 @@ class App
         }
         if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'list' == $url[0]) {
             return (new BankController)->list();
+        }
+        if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'login' == $url[0]) {
+            return (new LoginController)->showLogin();
+        }
+        if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'login' == $url[0]) {
+            return (new LoginController)->login();
         }
         $update = ['add', 'deduct'];
         if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && in_array($url[0], $update)) {
@@ -56,5 +63,22 @@ class App
     {
         header('Location: ' . URL . $url);
         die;
+    }
+
+    public static function addMessage(string $msg): void
+    {
+        $_SESSION['msg'][] = ['msg' => $msg];
+    }
+
+    public static function clearMessages(): void
+    {
+        $_SESSION['msg'] = [];
+    }
+
+    public static function showMessages(): void
+    {
+        $messages = $_SESSION['msg'];
+        self::clearMessages();
+        self::view('msg', ['messages' => $messages]);
     }
 }

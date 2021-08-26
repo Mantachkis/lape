@@ -28,51 +28,49 @@ class BankController
 
         foreach ($bank->getData() as $key => $value) {
 
-
-
             if (isset($value['id']) && $value['id'] == $int) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
 
             if (count($array) != 11) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
             if (!is_numeric($array[0]) && $array[0] < 1 && $array[0] > 6) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
             if (!is_numeric($array[1]) && !is_numeric($array[2])) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
             if (!is_numeric($array[3]) && $array[3] != 0 && $array[3] != 1) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
             if (!is_numeric($array[4])) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
             if (!is_numeric($array[5]) && $array[5] <= 3) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
             if (!is_numeric($array[5]) && !is_numeric($array[6]) && !is_numeric($array[7]) && !is_numeric($array[8]) && !is_numeric($array[9]) && !is_numeric($array[10])) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
             if (strlen($_POST['name']) < 3 && strlen($_POST['surname']) < 3) {
-                // addMessage('Nepavyko');
+                App::addMessage('Nepavyko');
                 return App::view('acc');
                 exit;
             }
@@ -82,7 +80,7 @@ class BankController
             $acc = 'LT0123456' . rand(10000000000, 99999999999);
             $funds = 0;
             $new = ['name' => $name, 'surname' => $surname, 'id' => $id, 'acc' => $acc, 'funds' => $funds];
-
+            App::addMessage('Sukurta sekmingai');
             Json::get()->create($new);
             App::redirect('list');
         }
@@ -91,6 +89,7 @@ class BankController
 
     public function delete($id)
     {
+        App::addMessage('Ištrinta');
         Json::get()->delete($id);
         App::redirect('list');
     }
@@ -110,23 +109,26 @@ class BankController
             if ($_POST['id'] == $account['id']) {
                 $account['funds'] += $_POST['funds'];
                 Json::get()->update($_POST['id'], $account);
-                //addMessage('Atimtos lėšos');
+                App::addMessage('Pridėtos lėšos');
             }
         }
         return App::redirect('list');
     }
     public function deductFunds()
     {
-
         $bank = Json::get()->showAll();
         foreach ($bank as $account) {
-            if ($_POST['id'] == $account['id'] && ($account['funds'] - $_POST['funds']) >= 0) {
-                $account['funds'] -= $_POST['funds'];
-                Json::get()->update($_POST['id'], $account);
-                //addMessage('Atimtos lėšos');
+            if ($_POST['id'] == $account['id']) {
+                if (($account['funds'] - $_POST['funds']) >= 0) {
+                    $account['funds'] -= $_POST['funds'];
+                    Json::get()->update($_POST['id'], $account);
+                    App::addMessage('Atimtos lėšos');
+                } else {
+                    App::addMessage('Trūksta lėšų');
+                }
             }
-            //addMessage('Trūksta lėšų');
         }
+
         return App::redirect('list');
     }
 }

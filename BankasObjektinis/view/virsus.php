@@ -63,8 +63,8 @@
         <a href="<?= URL ?>">Home</a>
         <a href="<?= URL ?>create">Add new acc</a>
         <a href="<?= URL ?>list">Show all</a>
-
         <a href="<?= URL ?>login">Log in</a>
 
 
     </nav>
+    <?php showMessages();

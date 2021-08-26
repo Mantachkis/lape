@@ -14,6 +14,7 @@ class Json implements DataBase
         return self::$obj ?? self::$obj = new self;
     }
 
+
     public function getData()
     {
         return $this->data;
@@ -62,7 +63,7 @@ class Json implements DataBase
     function show(int $userId): array
     {
         foreach ($this->data as $i) {
-            if ($i['id'] == $userId) {
+            if ($i['email'] == $userId) {
                 return $i;
             }
         }
