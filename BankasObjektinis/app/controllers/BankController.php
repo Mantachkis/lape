@@ -30,62 +30,66 @@ class BankController
         $array = str_split($int);
 
         foreach ($bank->getData() as $key => $value) {
-
+            // var_dump($value['id']);
+            // var_dump($int);
+            // die;
             if (isset($value['id']) && $value['id'] == $int) {
-                App::addMessage('Nepavyko');
+                App::addMessage('Toks kodas jau buvo');
                 return App::view('acc');
                 exit;
-            }
 
-            if (count($array) != 11) {
-                App::addMessage('Nepavyko');
-                return App::view('acc');
-                exit;
+
+                if (count($array) != 11) {
+                    App::addMessage('Nepavyko');
+                    return App::view('acc');
+                    exit;
+                }
+                if (!is_numeric($array[0]) && $array[0] < 1 && $array[0] > 6) {
+                    App::addMessage('Nepavyko');
+                    return App::view('acc');
+                    exit;
+                }
+                if (!is_numeric($array[1]) && !is_numeric($array[2])) {
+                    App::addMessage('Nepavyko');
+                    return App::view('acc');
+                    exit;
+                }
+                if (!is_numeric($array[3]) && $array[3] != 0 && $array[3] != 1) {
+                    App::addMessage('Nepavyko');
+                    return App::view('acc');
+                    exit;
+                }
+                if (!is_numeric($array[4])) {
+                    App::addMessage('Nepavyko');
+                    return App::view('acc');
+                    exit;
+                }
+                if (!is_numeric($array[5]) && $array[5] <= 3) {
+                    App::addMessage('Nepavyko');
+                    return App::view('acc');
+                    exit;
+                }
+                if (!is_numeric($array[5]) && !is_numeric($array[6]) && !is_numeric($array[7]) && !is_numeric($array[8]) && !is_numeric($array[9]) && !is_numeric($array[10])) {
+                    App::addMessage('Nepavyko');
+                    return App::view('acc');
+                    exit;
+                }
+                if (strlen($_POST['name']) < 3 && strlen($_POST['surname']) < 3) {
+                    App::addMessage('Nepavyko');
+                    return App::view('acc');
+                    exit;
+                }
+
+                $name = $_POST['name'];
+                $surname = $_POST['surname'];
+                $id = $_POST['id'];
+                $acc = 'LT0123456' . rand(10000000000, 99999999999);
+                $funds = 0;
+                $new = ['name' => $name, 'surname' => $surname, 'id' => $id, 'acc' => $acc, 'funds' => $funds];
+                App::addMessage('Sukurta sekmingai');
+                Json::get()->create($new);
+                App::redirect('list');
             }
-            if (!is_numeric($array[0]) && $array[0] < 1 && $array[0] > 6) {
-                App::addMessage('Nepavyko');
-                return App::view('acc');
-                exit;
-            }
-            if (!is_numeric($array[1]) && !is_numeric($array[2])) {
-                App::addMessage('Nepavyko');
-                return App::view('acc');
-                exit;
-            }
-            if (!is_numeric($array[3]) && $array[3] != 0 && $array[3] != 1) {
-                App::addMessage('Nepavyko');
-                return App::view('acc');
-                exit;
-            }
-            if (!is_numeric($array[4])) {
-                App::addMessage('Nepavyko');
-                return App::view('acc');
-                exit;
-            }
-            if (!is_numeric($array[5]) && $array[5] <= 3) {
-                App::addMessage('Nepavyko');
-                return App::view('acc');
-                exit;
-            }
-            if (!is_numeric($array[5]) && !is_numeric($array[6]) && !is_numeric($array[7]) && !is_numeric($array[8]) && !is_numeric($array[9]) && !is_numeric($array[10])) {
-                App::addMessage('Nepavyko');
-                return App::view('acc');
-                exit;
-            }
-            if (strlen($_POST['name']) < 3 && strlen($_POST['surname']) < 3) {
-                App::addMessage('Nepavyko');
-                return App::view('acc');
-                exit;
-            }
-            $name = $_POST['name'];
-            $surname = $_POST['surname'];
-            $id = $_POST['id'];
-            $acc = 'LT0123456' . rand(10000000000, 99999999999);
-            $funds = 0;
-            $new = ['name' => $name, 'surname' => $surname, 'id' => $id, 'acc' => $acc, 'funds' => $funds];
-            App::addMessage('Sukurta sekmingai');
-            Json::get()->create($new);
-            App::redirect('list');
         }
     }
 
