@@ -13,6 +13,7 @@ class Json implements DataBase
     {
         return self::$obj ?? self::$obj = new self;
     }
+
     public function getData()
     {
         return $this->data;
@@ -39,14 +40,30 @@ class Json implements DataBase
 
     function update(int $userId, array $userData): void
     {
+        foreach ($this->data as $key => $i) {
+            if ($i['id'] == $userId) {
+                $this->data[$key] = $userData;
+            }
+        }
     }
 
     function delete(int $userId): void
     {
+        foreach ($this->data as $key => $i) {
+            if ($i['id'] == $userId) {
+                unset($this->data[$key]);
+            }
+        }
     }
 
     function show(int $userId): array
     {
+        foreach ($this->data as $i) {
+            if ($i['id'] == $userId) {
+                return $i;
+            }
+        }
+        return [];
     }
 
     function showAll(): array

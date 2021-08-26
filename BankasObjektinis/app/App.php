@@ -29,14 +29,25 @@ class App
         if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'list' == $url[0]) {
             return (new BankController)->list();
         }
+        $update = ['add', 'deduct'];
+        if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && in_array($url[0], $update)) {
+            return (new BankController)->edit($url[0]);
+        }
+        if ('POST' == $_SERVER['REQUEST_METHOD'] && 2 == count($url) && 'delete' == $url[0]) {
+            return (new BankController)->delete($url[1]);
+        }
+        if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'addFunds' == $url[0]) {
+            return (new BankController)->addFunds();
+        }
         if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'create' == $url[0]) {
             return (new BankController)->save();
         }
     }
-    public static function view($name, $data = [])
+    public static function view($page, $data = [])
     {
+
         extract($data);
-        require DIR . "view/$name.php";
+        require DIR . "view/$page.php";
     }
     public static function redirect($url)
     {

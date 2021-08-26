@@ -5,24 +5,22 @@ use Bank\Objektinis\Json;
 
 
 foreach ($bank as $key => $i) { ?>
-<form action="" method="GET">
+<form action="<?= URL ?>delete/<?= $i['id'] ?>" method="POST">
     <div>
         <?php echo ($i['acc']), ' ', ($i['name']), ' ', ($i['surname']); ?>
-        <button type="submit" name="route" value="del_acc">Delete</button>
-        <input type="hidden" name="id" value="<?= $i['id'] ?>">
+        <button type="submit" name="route" value="">Delete</button>
+
 
 </form>
 
-<form style="display:inline" action="<?= URL ?>?route=addFundsPage" method="POST">
-    <input type="hidden" name="id" value="<?= $i['id'] ?>">
-    <input type="hidden" name="route" value="addFundsPage">
-    <button type="submit" value="addFunds">Add Funds</button>
+<form style="display:inline" action="<?= URL ?>add" method="POST">
+    <input type="hidden" name="id" value="<?= $i['id']  ?>">
+    <button type="submit">Add Funds</button>
 </form>
 
-<form style="display:inline" action="<?= URL ?>?route=deductFundsPage" method="POST">
-    <input type="hidden" name="id" value="<?= $i['id'] ?>">
-    <input type="hidden" name="route" value="deductFundsPage">
-    <button type="submit" value="deductFundsPage">Deduct Funds</button>
+<form style="display:inline" action="<?= URL ?>deduct" method="POST">
+    <input type="hidden" name="id" value="<?= $id ?>">
+    <button type="submit">Deduct Funds</button>
 </form>
 </div>
 

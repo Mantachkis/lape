@@ -87,4 +87,34 @@ class BankController
             App::redirect('list');
         }
     }
+
+
+    public function delete($id)
+    {
+        Json::get()->delete($id);
+        App::redirect('list');
+    }
+    public function edit($route)
+    {
+        $bank = Json::get()->showAll();
+        foreach ($bank as $account) {
+            if ($_POST['id'] == $account['id']) {
+                return App::view($route, $account);
+            }
+        }
+    }
+    public function addFunds()
+    {
+
+        $bank = Json::get()->showAll();
+        foreach ($bank as $account) {
+            if ($_POST['id'] == $account['id']) {
+
+                $account['funds'] += $_POST['funds'];
+                //addMessage('Atimtos lėšos');
+            }
+        }
+        $bank->__destruct;
+        return App::redirect('list');
+    }
 }

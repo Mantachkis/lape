@@ -10,7 +10,7 @@ foreach ($bank as $index => $_) {
 }
 ?>
 <form action="<?= URL ?>?route=addFunds" method="POST">
-    <input type="hidden" name="id" value="<?= $key ?>">
+    <input type="hidden" name="id" value="<?= $id ?>">
     <input type="double" name="funds">
     <Button type="submit">Pridėti lėšų</Button>
 </form>
