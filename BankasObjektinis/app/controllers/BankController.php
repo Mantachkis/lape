@@ -7,14 +7,17 @@ use Bank\Objektinis\Json;
 
 class BankController
 {
-    public function home()
-    {
-        return App::view('home');
-    }
+
     public function list()
     {
         $bank = Json::get()->showAll();
         return App::view('list', ['bank' => $bank]);
+    }
+    public function __construct()
+    {
+        if (!App::isLogged()) {
+            App::redirect('login');
+        }
     }
     public function create()
     {
@@ -89,7 +92,8 @@ class BankController
 
     public function delete($id)
     {
-        App::addMessage('Ištrinta');
+
+
         Json::get()->delete($id);
         App::redirect('list');
     }

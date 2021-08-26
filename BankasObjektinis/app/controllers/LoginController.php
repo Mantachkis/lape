@@ -3,7 +3,7 @@
 namespace Bank\Objektinis\Controllers;
 
 use Bank\Objektinis\App;
-use Bank\Objektinis\Json;
+use Bank\Objektinis\Login\Json;
 
 class LoginController
 {
@@ -23,50 +23,20 @@ class LoginController
             App::addMessage('Kažkas blogai');
             App::redirect('login');
         }
-
-
-        foreach ($users as $user) {
-            if ($user['name'] == $name) {
-                if ($user['pass'] == $pass) {
-                    $_SESSION['login'] = 1;
-                    $_SESSION['name'] = $name;
-                    addMessage('Sėkmingai prisijungta');
-                    require __DIR__ . '/view/pirmas.php';
-                    die;
-                }
-            }
+        if ($user['pass'] == $pass) {
+            $_SESSION['login'] = 1;
+            $_SESSION['name'] = $user['name'];
+            App::addMessage('success', 'Sėkmingai prisijungta');
+            App::redirect('list');
         }
-        addMessage('Kažkas blogai');
-        header('Location: ' . URL . '?route=login');
-        die;
+        App::addMessage('danger', 'Kažkas blogai');
+        App::redirect('login');
     }
 
-
-
-
-    // public function login()
-    // {
-    //     $name = $_POST['name'] ?? ''; // ivestas el pastas
-    //     $pass = md5($_POST['pass']) ?? '';
-    //     $user = $this->get()->show($name);
-    //     if (empty($user)) {
-    //         App::addMessage('danger', 'Kažkas blogai');
-    //         App::redirect('login');
-    //     }
-    //     if ($user['pass'] == $pass) {
-    //         $_SESSION['login'] = 1;
-    //         $_SESSION['name'] = $user['name'];
-    //         App::addMessage('success', 'Sėkmingai prisijungta');
-    //         App::redirect('list');
-    //     }
-    //     App::addMessage('danger', 'Kažkas blogai');
-    //     App::redirect('login');
-    // }
-
-    // public function logout()
-    // {
-    //     unset($_SESSION['login'], $_SESSION['name']);
-    //     App::addMessage('success', 'Puikiai atsijungta, šaunuolytė!');
-    //     App::redirect('login');
-    // }
+    public function logout()
+    {
+        unset($_SESSION['login'], $_SESSION['name']);
+        App::addMessage('Atsijugta');
+        App::redirect('login');
+    }
 }

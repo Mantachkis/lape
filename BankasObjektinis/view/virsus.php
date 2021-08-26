@@ -61,10 +61,15 @@
 
     <nav>
         <a href="<?= URL ?>">Home</a>
+        <?php if (isLogged()) : ?>
         <a href="<?= URL ?>create">Add new acc</a>
         <a href="<?= URL ?>list">Show all</a>
-        <a href="<?= URL ?>login">Log in</a>
+        <form action="<?= URL ?>logout" method="post">
+            <button type="submit">Logout <b><?= $_SESSION['name'] ?></b></button>
+        </form>
+        <?php else : ?>
 
-
+        <a href="<?= URL ?>login">Login</a>
+        <?php endif ?>
     </nav>
     <?php showMessages();

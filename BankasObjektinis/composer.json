@@ -8,6 +8,7 @@
             "Namai\\BankasObjektinis\\": "src/",
              "Bank\\Objektinis\\": "app/",
               "Bank\\Objektinis\\Controllers\\": "app/controllers/",
+              "Bank\\Objektinis\\Login\\": "app/login/",
                "App\\DB\\": "app/"
         }
     },

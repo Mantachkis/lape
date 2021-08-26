@@ -4,6 +4,7 @@ namespace Bank\Objektinis;
 
 use Bank\Objektinis\Controllers\BankController;
 use Bank\Objektinis\Controllers\LoginController;
+use Bank\Objektinis\Controllers\HomeController;
 
 class App
 {
@@ -21,7 +22,7 @@ class App
         _d($url);
 
         if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && '' == $url[0]) {
-            return (new BankController)->home();
+            return (new HomeController)->home();
         }
 
         if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'create' == $url[0]) {
@@ -32,6 +33,9 @@ class App
         }
         if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'login' == $url[0]) {
             return (new LoginController)->showLogin();
+        }
+        if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'logout' == $url[0]) {
+            return (new LoginController)->logout();
         }
         if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count($url) && 'login' == $url[0]) {
             return (new LoginController)->login();
@@ -80,5 +84,9 @@ class App
         $messages = $_SESSION['msg'];
         self::clearMessages();
         self::view('msg', ['messages' => $messages]);
+    }
+    public static function isLogged()
+    {
+        return isset($_SESSION['login']) && $_SESSION['login'] == 1;
     }
 }

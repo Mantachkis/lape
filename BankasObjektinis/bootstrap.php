@@ -10,3 +10,8 @@ function showMessages()
 {
     Bank\Objektinis\App::showMessages();
 }
+
+function isLogged()
+{
+    return Bank\Objektinis\App::isLogged();
+}
