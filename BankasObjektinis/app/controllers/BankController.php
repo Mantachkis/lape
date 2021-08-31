@@ -30,9 +30,7 @@ class BankController
         $array = str_split($int);
 
         foreach ($bank->getData() as $key => $value) {
-            // var_dump($value['id']);
-            // var_dump($int);
-            // die;
+
             if (isset($value['id']) && $value['id'] == $int) {
                 App::addMessage('Toks kodas jau buvo');
                 return App::view('acc');
@@ -79,17 +77,16 @@ class BankController
                     return App::view('acc');
                     exit;
                 }
-
-                $name = $_POST['name'];
-                $surname = $_POST['surname'];
-                $id = $_POST['id'];
-                $acc = 'LT0123456' . rand(10000000000, 99999999999);
-                $funds = 0;
-                $new = ['name' => $name, 'surname' => $surname, 'id' => $id, 'acc' => $acc, 'funds' => $funds];
-                App::addMessage('Sukurta sekmingai');
-                Json::get()->create($new);
-                App::redirect('list');
             }
+            $name = $_POST['name'];
+            $surname = $_POST['surname'];
+            $id = $_POST['id'];
+            $acc = 'LT0123456' . rand(10000000000, 99999999999);
+            $funds = 0;
+            $new = ['name' => $name, 'surname' => $surname, 'id' => $id, 'acc' => $acc, 'funds' => $funds];
+            App::addMessage('Sukurta sekmingai');
+            Json::get()->create($new);
+            App::redirect('list');
         }
     }
 

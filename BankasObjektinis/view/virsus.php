@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>Bank</title>
     <style>
     div {
@@ -13,12 +13,14 @@
         padding: 7px;
         border: 1px solid #ccc;
         font-size: 25px;
-        display: inline-block;
+        display: block;
     }
 
     button {
-        width: 200px;
+        width: 150px;
         margin: 10px;
+        font-size: 18px;
+        display: block;
     }
 
     nav {
@@ -27,18 +29,35 @@
         padding: 5px;
     }
 
+    h1 {
+        text-align: center;
+
+    }
+
     nav a {
         display: inline-block;
         margin: 6px;
         font-size: 20px;
         text-decoration: none;
         color: black;
+
+    }
+
+    label {
+        display: block;
+        margin-left: 15px;
+    }
+
+    input {
+        margin-left: 15px;
     }
 
     .login-form {
         margin: 5px;
         padding: 17px;
-        border: 1px solid #ccc;
+        display: block;
+        /* border: 1px solid #ccc; */
+        width: 400px;
     }
 
     .logout-form {
@@ -47,7 +66,7 @@
 
     .logout-form button {
         margin: 4px;
-        font-size: 26px;
+        font-size: 16px;
         text-decoration: none;
         color: black;
     }
@@ -65,7 +84,7 @@
         <?php if (isLogged()) : ?>
         <a href="<?= URL ?>create">Add new acc</a>
         <a href="<?= URL ?>list">Show all</a>
-        <form action="<?= URL ?>logout" method="post">
+        <form class="logout-form" action="<?= URL ?>logout" method="post">
             <button type="submit">Logout <b><?= $_SESSION['name'] ?></b></button>
         </form>
         <?php else : ?>

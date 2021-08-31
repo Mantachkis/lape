@@ -3,12 +3,12 @@
 
 
  <form action="<?= URL ?>login" method="post" class=" login-form">
-     <div>
+     <div class="login-form">
          <label>Vardas</label>
          <input type="text" class="form-control" name="name">
          <small class="form-text text-muted">Įveskite prisijungimo vardą.</small>
      </div>
-     <div>
+     <div class="login-form">
          <label>Slaptažodis</label>
          <input type="password" class="form-control" name="pass">
          <small class="form-text text-muted">Įveskite prisijungimo slaptažodį.</small>

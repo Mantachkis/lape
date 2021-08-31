@@ -5,7 +5,7 @@
     <label>Pavardė: </label><input type="text" name="surname">
     <label>Asmens kodas: </label><input type="text" name="id">
 
-    <button type="submit" name="route" value="addAcc"> sukurti naują sąskaitą</button>
+    <button style="width:300px" type="submit" name="route" value="addAcc"> sukurti naują sąskaitą</button>
 
 </form>
 <?php
